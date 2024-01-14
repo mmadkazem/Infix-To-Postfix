@@ -1,71 +1,22 @@
-﻿// C# program to evaluate value of a postfix expression
-using System;
-using System.Collections;
+﻿using System;
 
-namespace GFG {
-class Geek {
-
-	// Main() method
-	static void Main()
+namespace Infix_To_Postfix
+{
+	class Program
 	{
-		Geek e = new Geek();
-		e.v = ("1111++");
-		e.expression();
-		Console.WriteLine("postfix evaluation: "
-						+ e.answer);
-		Console.Read();
-	}
-
-	//'v' is variable to store the string value
-	public string v;
-
-	public string answer;
-	Stack i = new Stack();
-
-	// evaluation method
-	public void expression()
-	{
-		int a, b, ans;
-		for (int j = 0; j < v.Length; j++)
+		static void Main(string[] args)
 		{
-			String c = v.Substring(j, 1);
-			if (c.Equals("*")) {
-				String sa = (String)i.Pop();
-				String sb = (String)i.Pop();
-				a = Convert.ToInt32(sb);
-				b = Convert.ToInt32(sa);
-				ans = a * b;
-				i.Push(ans.ToString());
+
+			Console.Write("Enter your expression: ");
+			var infix = Console.ReadLine();
+			if (Validation.IsValid(infix))
+			{
+				var postfix = Convert.Postfix(infix);
+				var compute = Compute.CalculatePostfix(postfix);
+				Console.WriteLine(compute);
+				return;
 			}
-			else if (c.Equals("/")) {
-				String sa = (String)i.Pop();
-				String sb = (String)i.Pop();
-				a = Convert.ToInt32(sb);
-				b = Convert.ToInt32(sa);
-				ans = a / b;
-				i.Push(ans.ToString());
-			}
-			else if (c.Equals("+")) {
-				String sa = (String)i.Pop();
-				String sb = (String)i.Pop();
-				a = Convert.ToInt32(sb);
-				b = Convert.ToInt32(sa);
-				ans = a + b;
-				i.Push(ans.ToString());
-			}
-			else if (c.Equals("-")) {
-				String sa = (String)i.Pop();
-				String sb = (String)i.Pop();
-				a = Convert.ToInt32(sb);
-				b = Convert.ToInt32(sa);
-				ans = a - b;
-				i.Push(ans.ToString());
-			}
-			else {
-				i.Push(v.Substring(j, 1));
-			}
+			Console.WriteLine("This wrong!!!");
 		}
-		answer = (String)i.Pop();
 	}
-}
 }

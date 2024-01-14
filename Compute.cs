@@ -1,18 +1,24 @@
 using System;
-using System.Collections.Generic;
 
-namespace infix
+namespace Infix_To_Postfix
 {
     public static class Compute
     {
         public static int CalculatePostfix(string expression)
         {
-            var stack = InuputNumberPostfix(expression);
-            foreach (char c in expression)
+            var stack = new MyStack<int>();
+            var postfixNum = InuputNumberPostfix(expression);
+            string save = "";
+            foreach (char c in postfixNum)
             {
-                if (char.IsLetterOrDigit(c))
+                if (char.IsNumber(c))
                 {
-                    continue;
+                    save += c;
+                }
+                else if (c == ',')
+                {
+                    stack.Push(System.Convert.ToInt32(save));
+                    save = "";
                 }
                 else if (IsOperator(c))
                 {
@@ -24,10 +30,10 @@ namespace infix
             }
             return stack.Pop();
         }
-        public static Stack<int> InuputNumberPostfix(string expression)
+        public static string InuputNumberPostfix(string expression)
         {
-            Stack<int> stack = new Stack<int>();
             var save = "";
+            var postfixNum = "";
 
             foreach (char c in expression)
             {
@@ -37,13 +43,23 @@ namespace infix
                 }
                 else if (c == ',')
                 {
+                    if (MathExpressionsValidation.IsNumber(save))
+                    {
+                        postfixNum += save + ',';
+                        continue;
+                    }
+
                     Console.Write($"{save}: ");
+                    postfixNum += Console.ReadLine() + ',';
                     save = "";
-                    stack.Push(Convert.ToInt32(Console.ReadLine()));
+                }
+                else if (IsOperator(c))
+                {
+                    postfixNum += c;
                 }
             }
 
-            return stack;
+            return postfixNum;
         }
         static bool IsOperator(char c)
         {

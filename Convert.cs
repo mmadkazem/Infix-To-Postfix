@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO.Pipes;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Infix_To_Postfix
 {
@@ -28,7 +23,7 @@ namespace Infix_To_Postfix
         {
             var postfix = "";
             var save = "";
-            var opertors = new Stack<char>();
+            var opertors = new MyStack<char>();
             foreach (var c in infix)
             {
                 if (char.IsLetterOrDigit(c))
