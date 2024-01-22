@@ -73,6 +73,7 @@ namespace Infix_To_Postfix
             {
                 save += ",";
                 postfix += save;
+                save = "";
             }
             while (opertors.Count > 0)
             {

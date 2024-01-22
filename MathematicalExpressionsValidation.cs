@@ -73,7 +73,7 @@ namespace Infix_To_Postfix
         static bool IsValidCharter(string expression, int i)
         {
             var c = expression[i];
-            if (!char.IsLetterOrDigit(c) || !IsOperator(c))
+            if (!(char.IsLetterOrDigit(c) || IsOperator(c)))
             {
                 Console.WriteLine($"{c} is not valid!!!");
                 return false;

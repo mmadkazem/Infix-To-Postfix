@@ -46,6 +46,7 @@ namespace Infix_To_Postfix
                     if (MathExpressionsValidation.IsNumber(save))
                     {
                         postfixNum += save + ',';
+                        save = "";
                         continue;
                     }
 
