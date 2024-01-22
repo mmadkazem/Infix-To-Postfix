@@ -44,18 +44,24 @@ namespace Infix_To_Postfix
         }
         static bool IsValidVaribleName(string varible)
         {
+            if (MathExpressionsValidation.IsNumber(varible))
+            {
+                return true;
+            }
+
             var arrayChar = varible.ToCharArray();
+            if (char.IsNumber(varible[0]))
+            {
+                Console.WriteLine("The variable must not start with a number");
+                Console.WriteLine($"varible: {varible}");
+                return false;
+            }
+
             for (int i = 1; i <= arrayChar.Length - 2; i++)
             {
-                if (char.IsNumber(varible[0])
-                 && char.IsLetter(varible[i]))
-                {
-                    Console.WriteLine("The variable must not start with a number");
-                    Console.WriteLine($"varible: {varible}");
-                    return false;
-                }
+
                 if (char.IsNumber(varible[i])
-                 && (char.IsLetter(varible[varible.Length - 1]) || 
+                 && (char.IsLetter(varible[varible.Length - 1]) ||
                  char.IsNumber(varible[varible.Length - 1])))
                 {
                     Console.WriteLine("The number should not be in the middle");
@@ -65,7 +71,6 @@ namespace Infix_To_Postfix
             }
 
             return true;
-
         }
     }
 }
