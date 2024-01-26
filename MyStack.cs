@@ -6,7 +6,7 @@ namespace Infix_To_Postfix
     public class MyStack<T>
     {
         private T[] values;
-        public int Count = 0;
+        public int Count = -1;
 
 
         public MyStack()
@@ -41,7 +41,7 @@ namespace Infix_To_Postfix
         }
         public bool IsEmpty()
         {
-            return Count == 0;
+            return Count == -1;
         }
 
         public T Peek()

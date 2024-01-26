@@ -6,11 +6,6 @@ namespace Infix_To_Postfix
     {
         public static bool IsValid(string expression)
         {
-            if (!IsBallanceValidation.IsSuccess(expression))
-            {
-                Console.WriteLine("Your expression is not ballance!!!");
-                return false;
-            }
             if (!MathExpressionsValidation.IsSuccess(expression))
             {
                 Console.WriteLine("Your statement is not mathematically correct!!!");
